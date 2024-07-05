@@ -112,6 +112,7 @@ int main()
     shaderProgram.setVec3("light.ambient", 1.0f, 1.0f, 1.0f);
     shaderProgram.setVec3("light.diffuse", 0.0f, 0.0f, 0.0f);
     shaderProgram.setVec3("light.specular", 0.0f, 0.0f, 0.0f);
+    shaderProgram.setFloat("material.shininess", 64);
 
     while (!glfwWindowShouldClose(window))
     {
