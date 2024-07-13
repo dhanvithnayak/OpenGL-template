@@ -1,18 +1,19 @@
-COMPILER := clang++
-FLAGS := -lglfw -lGL -lm -lX11 -lpthread -lXi -lXrandr -ldl -lassimp
+CXX := clang++
+LINKER := -lglfw -lGL -lm -lX11 -lpthread -lXi -lXrandr -ldl -lassimp
 SRC := src
-SHADER := src/shader
+SHADER := src/shader/shader.cpp
 CAMERA := src/camera
-MODEL := src/model
+MODEL := src/model/model.cpp
+MESH := src/model/mesh.cpp
 OUT := gl
 BUILD := build
 
 run: $(OUT)
 	./$(BUILD)/$(OUT)
 
-$(OUT): $(SRC)/gl.cpp $(SHADER)/shader.cpp $(MODEL)/model.cpp $(SRC)/glad.c $(MODEL)/mesh.cpp
+$(OUT): $(SRC)/gl.cpp $(SHADER) $(MODEL) $(SRC)/glad.c $(MESH)
 	if [ ! -d "$(BUILD)" ]; then mkdir $(BUILD); fi
-	$(COMPILER) $^ $(FLAGS) -o $(BUILD)/$(OUT)
+	$(CXX) $^ $(LINKER) -o $(BUILD)/$(OUT)
 
 clean:
 	rm -rf $(BUILD)
