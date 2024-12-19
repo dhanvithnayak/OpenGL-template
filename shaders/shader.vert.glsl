@@ -20,7 +20,7 @@ void main()
     gl_Position = projection * view * model * vec4(aPos, 1.0);
     FragPos = vec3(view * model * vec4(aPos, 1.0));
 
-    // Compute normal in CPU for performance
+    // Compute normal in CPU for better performance
     Normal = mat3(transpose(inverse(view * model))) * aNormal;
 
     LightPos = vec3(view * vec4(lightPos, 1.0));
